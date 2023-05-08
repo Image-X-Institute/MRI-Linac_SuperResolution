@@ -10,8 +10,8 @@ Contained here is the code and documentation required to integrate super-resolut
 #### Gadgetron, Docker, CUDA.
 [Gadgetron](https://github.com/gadgetron/gadgetron) is distributed using Docker containers. A working Docker installation is required. In addition, the [NVIDIA container toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) is required to allow Gadgetron (and the deep learning interface) to utilise CUDA GPUs. 
 
-#### PyTorch
-Conda install to install additional dependencies into the Gadgetron Docker image. This means each time we run the Docker image, we have PyTorch (and additional dependencies) working out of the box. This is done in the *Dockerfile*. Tweaking of the PyTorch / CUDA toolkit version may be needed when using different hardware.
+#### PyTorch (and other Python dependencies)
+This is done in the *Dockerfile_base_ai_image*. Tweaking of the PyTorch / CUDA toolkit version may be needed when using different hardware.
 
 #### Obtaining trained parameters
 In this repository under releases are the trained model parameters. These will need to be downloaded and placed under code/modules/parameters/.
@@ -33,23 +33,26 @@ docker build -t gadgetron_ai:0.1 .
 
 ## Running
 **The official Gadgetron GitHub repository contains a readthedocs that can be useful.** 
-An example run command is provided below, note modification will be required for your specific system (especially the --volume argument). 
-When deploying online with the GadgetronICE, port mapping will need to be enabled.
+A basic example run command is provided below.
+When deploying online, port mapping will need to enabled.
+When saving reconstructions for offline analysis (e.g., on the host machine), volume mounting will need to be enabled. 
 
 ```sh
 docker run --gpus=all -ti --name=gadgetron --rm gadgetron_ai:0.1
 ```
 
 ## Testing
-Now Gadgetron is ready and waiting. To test our interface we need to connect a shell to this container. Open a new terminal, **leave the terminal where you did docker run ... running**. 
+Once Gadgetron is running, open a new terminal, **leave the terminal where you did docker run ... running**. 
 ```sh
 docker exec -ti gadgetron bash
 ```
-In this connected shell, navigate to (i.e., cd /tmp). We can generate some test data using an inbuilt Shepp-Logan phantom generator.
+
+
+In this connected shell, navigate to /tmp (a good place to store reconstructions). We can generate some test data using an inbuilt Shepp-Logan phantom generator.
 ```sh
 ismrmrd_generate_cartesian_shepp_logan -r 10 -m 64
 ```
-This will create a testdata.h5 file, simulating an acquisition.
+This will create a testdata.h5 file, simulating an acquisition. For super-resolution methods in this repository it's important the matrix size is 64x64 so don't forget the -m 64 argument!
 
 
 Test a standard reconstruction with **no** deep learning.
@@ -63,7 +66,6 @@ Test a deep learning-based reconstruction.
 gadgetron_ismrmrd_client -f testdata.h5 -c GrappaEdsrTrackingDisabled.xml
 ```
 
-The out.h5 file can be inspected on the host machine using volume mounts (this would mean modifying the run command).
 
 Can also test the integration into MLC tracking using the test server script (locating in test/). 
 Run this script locally on the host machine (note: matplotlib and numpy will need to be installed):
