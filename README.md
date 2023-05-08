@@ -4,7 +4,7 @@
 Authors: **James Grover**
 
 Contained here is the code and documentation required to integrate AI into Gadgetron. 
-These will need to be downloaded (**under releases**) and saved under in code/modules/parameters/
+These will need to be downloaded (**under releases**) and saved in code/modules/parameters/
 
 ## Setup / Build / Install
 ### Prerequisites:
