@@ -5,7 +5,7 @@ Authors: **James Grover**
 
 Contained here is the code and documentation required to integrate super-resolution into Gadgetron. 
 
-## Setup / Build / Install
+## Build
 ### Prerequisites:
 #### Gadgetron, Docker, CUDA.
 [Gadgetron](https://github.com/gadgetron/gadgetron) is distributed using Docker containers. A working Docker installation is required. In addition, the [NVIDIA container toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) is required to allow Gadgetron (and the deep learning interface) to utilise CUDA GPUs. 
