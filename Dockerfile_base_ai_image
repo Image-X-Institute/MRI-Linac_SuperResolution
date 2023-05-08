@@ -1,0 +1,5 @@
+# Use recent Gadgetron RUNTIME Docker image.
+FROM ghcr.io/gadgetron/gadgetron/gadgetron_ubuntu_rt_cuda:20221121.1
+
+# Install additional packages needed by the deep learning interface.
+RUN /opt/conda/bin/conda install -y -q -n gadgetron pillow==8.3.1 pytorch==1.12.1 cudatoolkit=11.3.1 -c pytorch && /opt/conda/bin/conda clean -afy
