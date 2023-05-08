@@ -85,6 +85,11 @@ gadgetron_ismrmrd_client -f testdata.h5 -c GrappaTrackingEnabled.xml
 ```
 
 With super-resolution:
+On the host machine we need to re-run the server script with updated image dimensions (i.e. 256):
+```python
+python test_mlc_tracking_server.py -s 256 -p
+```
+In the Docker container:
 ```sh
 gadgetron_ismrmrd_client -f testdata.h5 -c GrappaEdsrTrackingEnabled.xml
 ```
