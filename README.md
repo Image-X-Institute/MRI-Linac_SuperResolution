@@ -17,7 +17,6 @@ This is done in the *Dockerfile_base_ai_image*. Tweaking of the PyTorch / CUDA t
 In this repository under releases are the trained model parameters. These will need to be downloaded and placed under code/modules/parameters/.
 * 64_to_256_bicubic_interpolation_JIT.pt    --    the bicubic interpolation model.
 * 2022-09-10_11-22-39_edsr_nonoise.pt    --    the EDSR trained on brains.
-* 2022-09-15_08-58-43_edsr_thorax_nonoise.pt    --    the EDSR fine-tuned to thoraxes.
 
 ## Building
 Once Docker is installed with the NVIDIA container runtime we can build a Gadgetron (with deep learning interface) image.
@@ -104,3 +103,11 @@ Meta-data should stream to the test_mlc_tracking_server script and a plot should
 * Dockerfile - This is used to build the Docker image with the deep learning framework.
 * LICENSE
 * README.md
+
+## Acknowledgement
+EDSR was trained on brain data from the QIN-GBM Treatment Response Cancer Imaging Archive dataset.
+1. Mamonov A, Kalpathy-Cramer J. Data From QIN GBM Treatment Response. The Cancer Imaging Archive. 2016;
+2. Prah M, Stufflebeam S, Paulson E, et al. Repeatability of standardized and normalized relative CBV in 
+patients with newly diagnosed glioblastoma. American Journal of Neuroradiology. 2015;36(9):1654-1661.
+3. Clark K, Vendt B, Smith K, et al. The Cancer Imaging Archive (TCIA): maintaining and operating a public 
+information repository. Journal of digital imaging. 2013;26(6):1045-1057.
