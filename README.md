@@ -5,6 +5,10 @@ Authors: **James Grover**
 
 Contained here is the code and documentation required to integrate super-resolution into Gadgetron. 
 
+## Publication Information
+**Super-resolution neural networks improve the spatiotemporal resolution of adaptive MRI-guided radiation therapy** by Grover et al. [https://www.nature.com/articles/s43856-024-00489-9]. 
+If you find our work useful in your research, please cite both our paper (above) and the Zenodo archive of this repository [https://zenodo.org/records/10828197].
+
 ## Build
 ### Prerequisites:
 #### Gadgetron, Docker, CUDA.
